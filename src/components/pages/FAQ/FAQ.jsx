@@ -54,7 +54,7 @@ const FAQ = () => {
     };
 
     return (
-        <div className="md:border-t overflow-hidden px-4 py-0 pt-4 pb-8 md:py-16">
+        <div className="overflow-hidden px-4 py-8 md:py-16">
             <div className="relative max-w-3xl mx-auto">
                 <svg
                     className="absolute left-full transform translate-x-1/2"

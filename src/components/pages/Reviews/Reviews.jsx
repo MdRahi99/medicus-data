@@ -62,7 +62,7 @@ const Reviews = () => {
     const visibleReviews = reviewsData.slice(currentIndex, currentIndex + reviewsPerPage);
 
     return (
-        <div className="px-4 py-12 md:px-16 md:py-20 bg-white">
+        <div className="px-4 py-12 md:px-16 md:py-20 bg-white border-y">
             <div className="text-center pb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
                     Customer <span className="text-primary">Reviews</span> and <span className="text-primary">Testimonials</span>
