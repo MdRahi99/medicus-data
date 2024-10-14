@@ -39,7 +39,7 @@ const Reviews = () => {
     }
 
     const ReviewCard = ({ review }) => (
-        <div className="bg-white p-8 rounded-lg shadow border">
+        <div className="bg-white rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray-200 p-8">
             <div className="flex items-center mb-4">
                 <img src={review.image} alt={review.name} className="w-12 h-12 object-cover rounded-full mr-4" />
                 <div>
@@ -71,7 +71,7 @@ const Reviews = () => {
             </div>
 
             <div className="relative overflow-hidden">
-                <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-3'} gap-4`}>
+                <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-3'} gap-4 md:gap-8`}>
                     {visibleReviews.map((review) => (
                         <ReviewCard key={review.id} review={review} />
                     ))}
