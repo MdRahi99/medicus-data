@@ -3,7 +3,7 @@ import banner_video from "../../../assets/banner_video.mp4";
 
 const Banner = () => {
   return (
-    <div className="relative bg-primary bg-opacity-10 overflow-hidden py-8 md:py-20">
+    <div className="relative bg-primary bg-opacity-10 overflow-hidden py-8 md:py-24">
       {/* Background Decoration */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-sky-600 to-secondary opacity-80"></div>
 
