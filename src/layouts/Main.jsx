@@ -7,7 +7,7 @@ const Main = () => {
     return (
         <div className='max-w-[2000px] mx-auto'>
             <Navbar />
-            <main>
+            <main className='min-h-screen'>
                 <Outlet />
             </main>
             <Footer />
