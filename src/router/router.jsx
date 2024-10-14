@@ -4,8 +4,8 @@ import Home from "../components/pages/Home/Home";
 import Products from "../components/pages/Products/Products";
 import Reviews from "../components/pages/Reviews/Reviews";
 import Contact from "../components/pages/Contact/Contact";
-import FAQ from "../components/pages/Faq/Faq";
 import USP from "../components/pages/USP/USP";
+import FAQ from "../components/pages/FAQ/FAQ";
 
 const router = createBrowserRouter([
     {
