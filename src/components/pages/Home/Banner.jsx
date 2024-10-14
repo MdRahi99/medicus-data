@@ -11,14 +11,14 @@ const Banner = () => {
       <div className="relative z-10 flex flex-col md:flex-row items-center md:gap-20 justify-between px-4 py-4 md:px-16 mx-auto text-white space-y-10 md:space-y-0">
         
         {/* Text Section */}
-        <div className="md:w-[50%] text-center md:text-left space-y-6">
+        <div className="md:w-[50%] text-center md:text-left space-y-4 md:space-y-6">
           <h1 className="text-4xl md:text-[3.5rem] font-bold md:font-extrabold leading-tight">
             Automate Doctor Practices for <br /> Unmatched Efficiency
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 text-justify max-w-xl">
+          <p className="text-lg md:text-xl text-gray-200 max-w-xl">
             Empower healthcare professionals by simplifying administrative tasks. Schedule your demo today!
           </p>
-          <button className="px-12 py-4 bg-secondary text-white text-lg font-medium rounded-full shadow-md hover:bg-primary hover:text-white transition duration-300 ease-in-out">
+          <button className="px-12 py-3.5 bg-secondary text-white text-lg font-medium rounded-full shadow-sm hover:bg-primary hover:text-white transition duration-300 ease-in-out">
             Book Demo
           </button>
         </div>
