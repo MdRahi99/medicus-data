@@ -9,12 +9,12 @@ import USP from '../USP/USP';
 const Home = () => {
     return (
         <div className=''>
-            <Banner />
-            <Products />
-            <USP />
-            <Reviews />
-            <FAQ />
-            <Contact />
+            <div id="home"><Banner /></div>
+            <div id="products"><Products /></div>
+            <div id="reviews"><Reviews /></div>
+            <div id="usp"><USP /></div>
+            <div id="faq"><FAQ /></div>
+            <div id="contact"><Contact /></div>
         </div>
     );
 };

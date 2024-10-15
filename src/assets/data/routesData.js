@@ -1,5 +1,5 @@
 export const routesData = [
-    {route: '/', title: 'Home'},
+    {route: '/home', title: 'Home'},
     {route: '/products', title: 'Products'},
     {route: '/reviews', title: 'Reviews'},
     {route: '/usp', title: "USP's"},
