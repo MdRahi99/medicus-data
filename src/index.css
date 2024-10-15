@@ -13,3 +13,12 @@
     display: none;
     /* Chrome, Safari and Opera */
 }
+
+.slick-slider {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.slick-list {
+    overflow: visible;
+}

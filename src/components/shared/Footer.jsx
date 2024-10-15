@@ -1,9 +1,15 @@
 import React from 'react';
 import { FiFacebook, FiInstagram, FiYoutube, FiTwitter } from "react-icons/fi";
-import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
+    const scrollToSection = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <footer className="bg-primary text-white">
             <div className="container mx-auto py-8">
@@ -24,26 +30,23 @@ const Footer = () => {
                         <div>
                             <h3 className="font-semibold mb-3">Quick Menu</h3>
                             <ul className="space-y-2 flex flex-col gap-2 text-sm">
-                                <Link to='/' className='hover:text-gray-300 cursor-pointer text-gray-50'>Home</Link>
-                                <Link to='/' className='hover:text-gray-300 cursor-pointer text-gray-50'>About</Link>
-                                <Link to='/' className='hover:text-gray-300 cursor-pointer text-gray-50'>Products</Link>
-                                <Link to='/' className='hover:text-gray-300 cursor-pointer text-gray-50'>Blog</Link>
+                                <li onClick={() => scrollToSection('home')} className='hover:text-gray-300 cursor-pointer text-gray-50'>Home</li>
+                                {/* <li onClick={() => scrollToSection('privacy-policy')} className='hover:text-gray-300 cursor-pointer text-gray-50'>Privacy Policy</li> */}
+                                <Link to="/privacy-policy" className='hover:text-gray-300 cursor-pointer text-gray-50'>Privacy Policy</Link>
                             </ul>
                         </div>
                         <div>
                             <h3 className="font-semibold mb-3">Support us</h3>
                             <ul className="space-y-2 flex flex-col gap-2 text-sm">
-                                <Link to='/' className='hover:text-gray-300 cursor-pointer text-gray-50'>FAQ's</Link>
-                                <Link to='/' className='hover:text-gray-300 cursor-pointer text-gray-50'>Support Center</Link>
-                                <Link to='/' className='hover:text-gray-300 cursor-pointer text-gray-50'>Security</Link>
-                                <Link to='/' className='hover:text-gray-300 cursor-pointer text-gray-50'>Contact</Link>
+                                <li onClick={() => scrollToSection('faq')} className='hover:text-gray-300 cursor-pointer text-gray-50'>FAQ's</li>
+                                <li onClick={() => scrollToSection('contact')} className='hover:text-gray-300 cursor-pointer text-gray-50'>Contact</li>
                             </ul>
                         </div>
                         <div>
-                            <h3 className="font-semibold mb-3">Quick Menu</h3>
+                            <h3 className="font-semibold mb-3">Contact</h3>
                             <ul className="space-y-2 flex flex-col gap-2 text-sm">
-                                <Link to='/' className='hover:text-gray-300 cursor-pointer text-gray-50'>+12345678910</Link>
-                                <Link to='/' className='hover:text-gray-300 cursor-pointer text-gray-50'>company@gmail.com</Link>
+                                <li className='text-gray-50'>+12345678910</li>
+                                <li className='text-gray-50'>company@gmail.com</li>
                             </ul>
                         </div>
                     </div>

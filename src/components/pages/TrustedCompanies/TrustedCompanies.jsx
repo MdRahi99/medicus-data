@@ -5,7 +5,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import { companies } from '../../../assets/data/companiesData';
 
 const TrustedCompanies = () => {
-
   const settings = {
     dots: true,
     infinite: true,
@@ -40,24 +39,26 @@ const TrustedCompanies = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-16 md:py-20 border-b">
+    <section className="bg-gray-50 py-16 md:py-20 border-b overflow-hidden">
       <div className="container mx-auto px-4">
         <h2 className="text-center text-3xl font-bold text-gray-800 mb-12 md:mb-16">
           Trusted by <span className='text-primary'>150+ Industry</span> Leaders
         </h2>
-        <Slider {...settings}>
-          {companies?.map((company, index) => (
-            <div key={index} className="px-4">
-              <div className="h-20 flex items-center justify-center">
-                <img 
-                  src={company.logo} 
-                  alt={`${company.name} logo`} 
-                  className="max-h-full max-w-full object-contain transition-all duration-300"
-                />
+        <div className="max-w-full">
+          <Slider {...settings}>
+            {companies?.map((company, index) => (
+              <div key={index} className="px-4">
+                <div className="h-20 flex items-center justify-center">
+                  <img
+                    src={company.logo}
+                    alt={`${company.name} logo`}
+                    className="max-h-full max-w-full object-contain transition-all duration-300"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        </div>
       </div>
     </section>
   );
