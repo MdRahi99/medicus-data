@@ -36,7 +36,7 @@ const Products = () => {
                   <span className="text-xs md:text-sm font-medium text-primary">{service.stat}</span>
                   <button 
                     onClick={() => openModal(service)}
-                    className="bg-primary truncate text-white px-4 md:px-6 py-1.5 text-xs md:text-sm md:py-2 rounded-3xl hover:bg-secondary transition-all duration-300 focus:outline-none"
+                    className="bg-primary truncate text-white px-4 md:px-6 py-2 text-xs md:text-sm md:py-2 rounded-3xl hover:bg-secondary transition-all duration-300 focus:outline-none"
                   >
                     Learn More
                   </button>

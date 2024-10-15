@@ -4,13 +4,16 @@ import not_found from "../../assets/images/not_found.jpg";
 
 const DynamicModal = ({ service, onClose }) => {
     const [isVisible, setIsVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     console.log(service?.image);
-    
+
 
     useEffect(() => {
+        setLoading(true)
         if (service) {
             setIsVisible(true);
+            setLoading(false)
         }
     }, [service]);
 
@@ -55,12 +58,19 @@ const DynamicModal = ({ service, onClose }) => {
                         </div>
 
                         {/* Right side - Content */}
-                        <div className="md:w-1/2 h-64 md:h-full my-auto relative overflow-hidden">
-                            <img
-                                src={service?.image ? service?.image : not_found}
-                                alt={service.title}
-                            />
-                        </div>
+                        {
+                            loading ?
+                                <div className='h-full w-full flex items-center justify-center'>
+                                    Loading...
+                                </div>
+                                :
+                                <div className="md:w-1/2 h-64 md:h-full my-auto relative overflow-hidden">
+                                    <img
+                                        src={service?.image ? service?.image : not_found}
+                                        alt={service.title}
+                                    />
+                                </div>
+                        }
                     </div>
                 </div>
             </div>
