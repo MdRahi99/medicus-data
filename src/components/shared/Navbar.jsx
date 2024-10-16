@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiMenu } from 'react-icons/hi';
 import { RiCloseFill } from "react-icons/ri";
+import { useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import { routesData } from '../../assets/data/routesData';
 
@@ -11,17 +12,43 @@ const Navbar = () => {
     const [activeSection, setActiveSection] = useState('');
     const mainRoutes = routesData.filter(route => route.route !== '/contact');
     const contactRoute = routesData.find(route => route.route === '/contact');
+    
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
-    const scrollToSection = (sectionId) => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-            setActiveSection(sectionId);
-            if (isOpen) toggleMenu();
+    const scrollToSection = (sectionId, route) => {
+        // If we're already on the home page, just scroll
+        if (location.pathname === '/') {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+                setActiveSection(sectionId);
+                if (isOpen) toggleMenu();
+            }
+        } else {
+            // If we're on a different route, navigate home first
+            navigate('/', { state: { scrollTo: sectionId } });
         }
     };
+
+    useEffect(() => {
+        // Handle scroll to section after navigation
+        if (location.pathname === '/' && location.state?.scrollTo) {
+            const sectionId = location.state.scrollTo;
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                    setActiveSection(sectionId);
+                }
+            }, 100); // Small delay to ensure DOM is ready
+
+            // Clean up the state
+            window.history.replaceState({}, document.title);
+        }
+    }, [location]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,24 +57,26 @@ const Navbar = () => {
                 setScrolled(isScrolled);
             }
 
-            // Determine active section based on scroll position
-            const sections = mainRoutes.map(route => document.getElementById(route.route.slice(1)));
-            const currentSection = sections.find(section => {
-                if (section) {
-                    const rect = section.getBoundingClientRect();
-                    return rect.top <= 50 && rect.bottom > 50;
-                }
-                return false;
-            });
+            // Only track scroll position on home page
+            if (location.pathname === '/') {
+                const sections = mainRoutes.map(route => document.getElementById(route.route.slice(1)));
+                const currentSection = sections.find(section => {
+                    if (section) {
+                        const rect = section.getBoundingClientRect();
+                        return rect.top <= 50 && rect.bottom > 50;
+                    }
+                    return false;
+                });
 
-            if (currentSection) {
-                setActiveSection(currentSection.id);
+                if (currentSection) {
+                    setActiveSection(currentSection.id);
+                }
             }
         };
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [scrolled, mainRoutes]);
+    }, [scrolled, mainRoutes, location.pathname]);
 
     return (
         <nav className={`sticky top-0 z-50 bg-white ${scrolled ? 'shadow-md' : ''}`}>
@@ -61,19 +90,28 @@ const Navbar = () => {
                     {mainRoutes.map((route, index) => (
                         <div key={index} className="relative group">
                             <button
-                                onClick={() => scrollToSection(route.route.slice(1))}
-                                className={`transition-colors duration-300 ease-in-out truncate font-medium hover:text-primary ${activeSection === route.route.slice(1) ? 'text-primary' : 'text-gray-800'} pb-1 block`}
+                                onClick={() => scrollToSection(route.route.slice(1), route.route)}
+                                className={`transition-colors duration-300 ease-in-out truncate font-medium hover:text-primary ${
+                                    activeSection === route.route.slice(1) ? 'text-primary' : 'text-gray-800'
+                                } pb-1 block`}
                             >
                                 {route.title}
                             </button>
                             <div
-                                className={`absolute bottom-0 left-0 w-full h-0.5 transition-all duration-300 ease-in-out ${activeSection === route.route.slice(1) ? 'bg-primary scale-x-100' : 'bg-primary scale-x-0 group-hover:scale-x-100'}`}
+                                className={`absolute bottom-0 left-0 w-full h-0.5 transition-all duration-300 ease-in-out ${
+                                    activeSection === route.route.slice(1) 
+                                        ? 'bg-primary scale-x-100' 
+                                        : 'bg-primary scale-x-0 group-hover:scale-x-100'
+                                }`}
                             />
                         </div>
                     ))}
                 </div>
 
-                <button onClick={() => scrollToSection('contact')} className='hidden md:flex items-center justify-end truncate'>
+                <button 
+                    onClick={() => scrollToSection('contact')} 
+                    className='hidden md:flex items-center justify-end truncate'
+                >
                     {contactRoute && (
                         <div className='flex items-center gap-2 px-8 py-2 rounded-3xl font-medium text-white hover:text-primary bg-primary hover:bg-white border-2 border-white hover:border-primary'>
                             <div>{contactRoute.title}</div>
@@ -105,7 +143,7 @@ const Navbar = () => {
                             {mainRoutes.map((route, index) => (
                                 <div key={index} className="mb-8">
                                     <button
-                                        onClick={() => scrollToSection(route.route.slice(1))}
+                                        onClick={() => scrollToSection(route.route.slice(1), route.route)}
                                         className={`${activeSection === route.route.slice(1) ? 'text-primary' : ''}`}
                                     >
                                         {route.title}
